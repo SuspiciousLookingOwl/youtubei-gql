@@ -5,12 +5,12 @@
 type BaseChannel {
   id: ID!
   name: String!
-  playlists(continuation: Int, limit: Int, next: Int = 1): ChannelPlaylists!
+  playlists(continuation: String, limit: Int, next: Int = 1): ChannelPlaylists!
   subscriberCount: String
   thumbnails: [Thumbnail!]!
   url: String!
   videoCount: Int
-  videos(continuation: Int, limit: Int, next: Int = 1): VideoCompacts!
+  videos(continuation: String, limit: Int, next: Int = 1): VideoCompacts!
 }
 
 type BaseChannels {
@@ -44,7 +44,7 @@ type Playlist {
   thumbnails: [Thumbnail!]!
   title: String!
   videoCount: Int!
-  videos(continuation: Int, limit: Int, next: Int = 1): VideoCompacts!
+  videos(continuation: String, limit: Int, next: Int = 1): VideoCompacts!
 }
 
 type PlaylistCompact {
@@ -63,12 +63,12 @@ type PlaylistCompacts {
 
 type Query {
   channel(id: ID!): Channel!
-  channels(continuation: Int, keyword: String!, limit: Int, next: Int = 1): BaseChannels!
+  channels(continuation: String, keyword: String!, limit: Int, next: Int = 1): BaseChannels!
   playlist(id: ID!): Playlist!
-  playlists(continuation: Int, keyword: String!, limit: Int, next: Int = 1): PlaylistCompacts!
-  search(continuation: Int, keyword: String!, limit: Int, next: Int = 1): CompactUnions!
+  playlists(continuation: String, keyword: String!, limit: Int, next: Int = 1): PlaylistCompacts!
+  search(continuation: String, keyword: String!, limit: Int, next: Int = 1): CompactUnions!
   video(id: ID!): Video!
-  videos(continuation: Int, keyword: String!, limit: Int, next: Int = 1): VideoCompacts!
+  videos(continuation: String, keyword: String!, limit: Int, next: Int = 1): VideoCompacts!
 }
 
 type Shelf {
@@ -89,7 +89,7 @@ type Video {
   duration: Int!
   id: ID!
   isLiveContent: Boolean!
-  related(continuation: Int, limit: Int, next: Int = 1): VideoCompacts!
+  related(continuation: String, limit: Int, next: Int = 1): VideoCompacts!
   thumbnails: [Thumbnail!]!
   title: String!
   uploadDate: String

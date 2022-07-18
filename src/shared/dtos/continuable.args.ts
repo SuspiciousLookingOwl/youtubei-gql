@@ -9,7 +9,7 @@ export class ContinuableArgs {
   @Field(() => Int, { nullable: true })
   limit?: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => String, { nullable: true })
   continuation?: string;
 }
 

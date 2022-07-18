@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@channel": ["./src/channel"],
+      "@channel/*": ["./src/channel/*"],
+      "@thumbnail": ["./src/thumbnail"],
+      "@thumbnail/*": ["./src/thumbnail/*"],
+      "@video": ["./src/video"],
+      "@video/*": ["./src/video/*"],
+      "@shared": ["./src/shared"],
+      "@shared/*": ["./src/shared/*"],
+      "@playlist": ["./src/playlist"],
+      "@playlist/*": ["./src/playlist/*"]
+    }
+  }
+}

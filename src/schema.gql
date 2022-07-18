@@ -1,0 +1,114 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BaseChannel {
+  id: ID!
+  name: String!
+  playlists(continuation: Int, limit: Int, next: Int = 1): ChannelPlaylists!
+  subscriberCount: String
+  thumbnails: [Thumbnail!]!
+  url: String!
+  videoCount: Int
+  videos(continuation: Int, limit: Int, next: Int = 1): VideoCompacts!
+}
+
+type BaseChannels {
+  continuation: String
+  items: [BaseChannel!]!
+}
+
+type Channel {
+  banner: [Thumbnail!]!
+  mobileBanner: [Thumbnail!]!
+  shelves: [Shelf!]!
+  tvBanner: [Thumbnail!]!
+}
+
+type ChannelPlaylists {
+  continuation: String
+  items: [PlaylistCompact!]!
+}
+
+union CompactUnion = BaseChannel | PlaylistCompact | VideoCompact
+
+type CompactUnions {
+  continuation: String
+  items: [CompactUnion!]!
+}
+
+type Playlist {
+  channel: BaseChannel
+  id: ID!
+  lastUpdatedAt: String!
+  thumbnails: [Thumbnail!]!
+  title: String!
+  videoCount: Int!
+  videos(continuation: Int, limit: Int, next: Int = 1): VideoCompacts!
+}
+
+type PlaylistCompact {
+  channel: BaseChannel
+  id: ID!
+  playlist: Playlist!
+  thumbnails: [Thumbnail!]!
+  title: String!
+  videoCount: Int!
+}
+
+type PlaylistCompacts {
+  continuation: String
+  items: [PlaylistCompact!]!
+}
+
+type Query {
+  channel(id: ID!): Channel!
+  channels(continuation: Int, keyword: String!, limit: Int, next: Int = 1): BaseChannels!
+  playlist(id: ID!): Playlist!
+  playlists(continuation: Int, keyword: String!, limit: Int, next: Int = 1): PlaylistCompacts!
+  search(continuation: Int, keyword: String!, limit: Int, next: Int = 1): CompactUnions!
+  video(id: ID!): Video!
+  videos(continuation: Int, keyword: String!, limit: Int, next: Int = 1): VideoCompacts!
+}
+
+type Shelf {
+  items: [CompactUnion!]!
+  subtitle: String
+  title: String!
+}
+
+type Thumbnail {
+  height: Int!
+  url: String!
+  width: Int!
+}
+
+type Video {
+  channel: BaseChannel
+  description: String!
+  duration: Int!
+  id: ID!
+  isLiveContent: Boolean!
+  related(continuation: Int, limit: Int, next: Int = 1): VideoCompacts!
+  thumbnails: [Thumbnail!]!
+  title: String!
+  uploadDate: String
+  viewCount: Int
+}
+
+type VideoCompact {
+  channel: BaseChannel
+  description: String!
+  duration: Int!
+  id: ID!
+  isLive: Boolean!
+  thumbnails: [Thumbnail!]!
+  title: String!
+  uploadDate: String
+  viewCount: Int
+}
+
+type VideoCompacts {
+  continuation: String
+  items: [VideoCompact!]!
+}

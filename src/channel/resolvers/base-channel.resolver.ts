@@ -11,7 +11,7 @@ export class BaseChannelResolver {
   @ResolveField(() => VideoCompacts)
   async videos(
     @Parent() channel: youtubei.BaseChannel,
-    @Args(new JoiPipe(ContinuableArgsSchema)) args: ContinuableArgs,
+    @Args(new JoiPipe(ContinuableArgsSchema())) args: ContinuableArgs,
   ): Promise<youtubei.ChannelVideos> {
     await ContinuableUtils.resolveContinuable(args, channel.videos);
     return channel.videos;
@@ -20,7 +20,7 @@ export class BaseChannelResolver {
   @ResolveField(() => ChannelPlaylists)
   async playlists(
     @Parent() channel: youtubei.BaseChannel,
-    @Args(new JoiPipe(ContinuableArgsSchema)) args: ContinuableArgs,
+    @Args(new JoiPipe(ContinuableArgsSchema())) args: ContinuableArgs,
   ): Promise<youtubei.ChannelPlaylists> {
     await ContinuableUtils.resolveContinuable(args, channel.playlists);
     return channel.playlists;

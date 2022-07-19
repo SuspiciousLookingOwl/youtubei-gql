@@ -3,7 +3,7 @@ import * as youtubei from "youtubei";
 
 export class ContinuableUtils {
   static async resolveContinuable<T>(
-    args: ContinuableArgs,
+    args: Omit<ContinuableArgs, "continuation">,
     continuable: youtubei.Continuable<T>,
     startsFrom = 0,
   ): Promise<youtubei.Continuable<T>> {

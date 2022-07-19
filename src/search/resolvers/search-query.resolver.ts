@@ -4,7 +4,6 @@ import { CompactUnions } from "@shared/models";
 import { ContinuableUtils } from "@shared/utils";
 import { JoiPipe } from "nestjs-joi";
 import * as youtubei from "youtubei";
-import { SearchResult } from "youtubei";
 
 @Resolver()
 export class SearchQueryResolver {
@@ -13,16 +12,28 @@ export class SearchQueryResolver {
   @Query(() => CompactUnions)
   async search(
     @Args(new JoiPipe(SearchArgsSchema)) args: SearchArgs,
-  ): Promise<SearchResult<"all">> {
+  ): Promise<youtubei.SearchResult> {
     const { keyword, ...rest } = args;
     const { next, limit, continuation, ...options } = rest;
 
-    const result = await this.client.search(keyword, options);
+    let result: youtubei.SearchResult;
+    let startsFrom: number;
+
+    if (continuation) {
+      result = new youtubei.SearchResult({ client: this.client });
+      result.continuation = continuation;
+      startsFrom = 0;
+    } else {
+      result = await this.client.search(keyword, options);
+      startsFrom = 1;
+    }
+
     await ContinuableUtils.resolveContinuable(
-      { next, limit, continuation },
+      { next, limit },
       result,
-      1,
+      startsFrom,
     );
+
     return result;
   }
 }

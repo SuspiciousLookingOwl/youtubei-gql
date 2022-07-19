@@ -11,7 +11,7 @@ export class PlaylistResolver {
   @ResolveField(() => VideoCompacts)
   async videos(
     @Parent() playlist: youtubei.Playlist,
-    @Args(new JoiPipe(ContinuableArgsSchema)) args: ContinuableArgs,
+    @Args(new JoiPipe(ContinuableArgsSchema())) args: ContinuableArgs,
   ): Promise<youtubei.PlaylistVideos> {
     await ContinuableUtils.resolveContinuable(args, playlist.videos, 1);
     return playlist.videos;

@@ -21,7 +21,7 @@ export class VideoResolver extends BaseVideoResolver {
   @ResolveField(() => VideoCompacts)
   async related(
     @Parent() video: youtubei.BaseVideo,
-    @Args(new JoiPipe(ContinuableArgsSchema)) args: ContinuableArgs,
+    @Args(new JoiPipe(ContinuableArgsSchema())) args: ContinuableArgs,
   ): Promise<youtubei.VideoRelated> {
     return this.resolveRelated(video, args);
   }

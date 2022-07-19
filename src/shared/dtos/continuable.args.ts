@@ -13,8 +13,18 @@ export class ContinuableArgs {
   continuation?: string;
 }
 
-export const ContinuableArgsSchema = Joi.object({
-  next: Joi.number().min(1).optional(),
-  limit: Joi.number().min(1).optional(),
-  continuation: Joi.string().optional(),
-});
+export const ContinuableArgsSchema = (optionalSchema?: Joi.SchemaMap) => {
+  console.log({ optionalSchema });
+  return Joi.alternatives().try(
+    Joi.object({
+      next: Joi.number().min(1).optional(),
+      limit: Joi.number().min(1).optional(),
+      ...optionalSchema,
+    }),
+    Joi.object({
+      next: Joi.number().min(1).optional(),
+      limit: Joi.number().min(1).optional(),
+      continuation: Joi.string().required(),
+    }),
+  );
+};

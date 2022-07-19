@@ -63,12 +63,12 @@ type PlaylistCompacts {
 
 type Query {
   channel(id: ID!): Channel!
-  channels(continuation: String, keyword: String!, limit: Int, next: Int = 1): BaseChannels!
+  channels(continuation: String, keyword: String, limit: Int, next: Int = 1): BaseChannels!
   playlist(id: ID!): Playlist!
-  playlists(continuation: String, keyword: String!, limit: Int, next: Int = 1): PlaylistCompacts!
-  search(continuation: String, keyword: String!, limit: Int, next: Int = 1): CompactUnions!
+  playlists(continuation: String, keyword: String, limit: Int, next: Int = 1): PlaylistCompacts!
+  search(continuation: String, keyword: String, limit: Int, next: Int = 1): CompactUnions!
   video(id: ID!): Video!
-  videos(continuation: String, keyword: String!, limit: Int, next: Int = 1): VideoCompacts!
+  videos(continuation: String, keyword: String, limit: Int, next: Int = 1): VideoCompacts!
 }
 
 type Shelf {

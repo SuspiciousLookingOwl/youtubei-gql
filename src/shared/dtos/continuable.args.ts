@@ -13,9 +13,8 @@ export class ContinuableArgs {
   continuation?: string;
 }
 
-export const ContinuableArgsSchema = (optionalSchema?: Joi.SchemaMap) => {
-  console.log({ optionalSchema });
-  return Joi.alternatives().try(
+export const ContinuableArgsSchema = (optionalSchema?: Joi.SchemaMap) =>
+  Joi.alternatives().try(
     Joi.object({
       next: Joi.number().min(1).optional(),
       limit: Joi.number().min(1).optional(),
@@ -27,4 +26,3 @@ export const ContinuableArgsSchema = (optionalSchema?: Joi.SchemaMap) => {
       continuation: Joi.string().required(),
     }),
   );
-};
